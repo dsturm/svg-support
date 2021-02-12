@@ -4,21 +4,22 @@ jQuery(document).ready(function ($) {
 	(bodhisvgsInlineSupport = function() {
 
 		// If force inline SVG option is active then add class
-		if ( ForceInlineSVGActive === 'true' ) {
-
-			// Find all SVG inside img and add class if it hasn't got it
-			jQuery('img').each(function() {
-
-				// Pick only those with the extension we want
-				if ( jQuery(this).attr('src').match(/\.(svg)/) ) {
-
-					// Add our class name
-					if ( !jQuery(this).hasClass(cssTarget.ForceInlineSVG) ) {
-						jQuery(this).addClass(cssTarget.ForceInlineSVG);
-					}
-				}
-			});
-		}
+		if (ForceInlineSVG && ForceInlineSVG.active === "true") {
+      // Find all SVG inside img and add class if it hasn't got it
+      jQuery("img").each(function () {
+        // Pick only those with the extension we want
+        if (
+          jQuery(this)
+            .attr("src")
+            .match(/\.(svg)/)
+        ) {
+          // Add our class name
+          if (!jQuery(this).hasClass(ForceInlineSVG.class) {
+            jQuery(this).addClass(ForceInlineSVG.class);
+          }
+        }
+      });
+    }
 
 		// Polyfill to support all ye old browsers
 		// delete when not needed in the future
@@ -42,7 +43,7 @@ jQuery(document).ready(function ($) {
 		// End snippet to support IE11
 
 		// Check to see if user set alternate class
-		if ( ForceInlineSVGActive === 'true' ) {
+		if (ForceInlineSVG && ForceInlineSVG.active === "true") {
 			var target  = ( cssTarget.Bodhi !== 'img.' ? cssTarget.Bodhi : 'img.style-svg' );
 		} else {
 			var target  = ( cssTarget !== 'img.' ? cssTarget : 'img.style-svg' );

@@ -71,7 +71,10 @@ function bodhi_svgs_inline() {
 		if ( ! empty( $bodhi_svgs_options['force_inline_svg'] ) ) {
 
 			// set variable as true to pass to js
-			$force_inline_svg_active = 'true';
+			$force_inline_svg = [
+				'active' => 'true',
+				'class' => !empty($bodhi_svgs_options['css_target']) ? $bodhi_svgs_options['css_target'] : 'style-svg',
+			];
 
 			// set the class for use in JS
 			if ( ! empty( $bodhi_svgs_options['css_target'] ) ) {
@@ -94,8 +97,10 @@ function bodhi_svgs_inline() {
 
 		} else {
 
-			// set variable as false to pass to JS
-			$force_inline_svg_active = 'false';
+            // set variable as false to pass to JS
+            $force_inline_svg = [
+                'active' => 'false',
+            ];
 
 			// if custom target is set, use that, otherwise use default
 			if ( ! empty( $bodhi_svgs_options['css_target'] ) ) {
@@ -125,24 +130,16 @@ function bodhi_svgs_inline() {
 		}
 
 		// check where the JS should be placed, header or footer
-		if ( ! empty( $bodhi_svgs_options['js_foot_choice'] ) ) {
-
-			$bodhi_svgs_js_footer = true;
-
-		} else {
-
-			$bodhi_svgs_js_footer = false;
-
-		}
+		$bodhi_svgs_js_footer = ! empty( $bodhi_svgs_options['js_foot_choice'] );
 
 		// create path for the correct js file
-		$bodhi_svgs_js_path = 'js/' . $bodhi_svgs_js_folder .'svgs-inline' . $bodhi_svgs_js_file . '.js' ;
+		$bodhi_svgs_js_path = 'js/' . $bodhi_svgs_js_folder .'svgs-inline' . $bodhi_svgs_js_file . '.js';
 
 		wp_register_script( 'bodhi_svg_inline', BODHI_SVGS_PLUGIN_URL . $bodhi_svgs_js_path, array( 'jquery' ), '1.0.0', $bodhi_svgs_js_footer );
 		wp_enqueue_script( 'bodhi_svg_inline' );
 
 		wp_localize_script( 'bodhi_svg_inline', 'cssTarget', $css_target_array );
-		wp_localize_script( 'bodhi_svg_inline', 'ForceInlineSVGActive', $force_inline_svg_active );
+		wp_localize_script( 'bodhi_svg_inline', 'ForceInlineSVG', $force_inline_svg );
 
 	}
 
