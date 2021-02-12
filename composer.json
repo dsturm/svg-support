@@ -1,0 +1,13 @@
+{
+    "name": "benbodhi/svg-support",
+    "description": "Upload SVG files to the Media Library and render SVG files inline for direct styling/animation of an SVG's internal elements using CSS/JS.",
+    "type": "wordpress-plugin",
+    "license": "GPLv2",
+    "authors": [
+        {
+            "name": "Benbodhi",
+            "email": "wp@benbodhi.com"
+        }
+    ],
+    "require": {}
+}
